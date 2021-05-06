@@ -1,16 +1,16 @@
 import React from "react";
 
-function List() {
+function List({ data }) {
 	return (
 		<div className="list">
-			<p>artistName</p>
-			<p>artistViewUrl</p>
-			<p>artworkUrl30</p>
-			<p>kind</p>
-			<p>releaseDate</p>
-			<p>trackName</p>
-			<p>trackTime</p>
-			<p>trackPrice</p>
+			<p>{data.artistName}</p>
+			<p>{data.artistViewUrl}</p>
+			<p>{data.artworkUrl100}</p>
+			<p>{data.kind}</p>
+			<p>{data.releaseDate}</p>
+			<p>{data.trackName}</p>
+			<p>{data.trackTime}</p>
+			<p>{data.trackPrice}</p>
 		</div>
 	);
 }

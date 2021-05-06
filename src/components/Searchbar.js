@@ -1,18 +1,39 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-function Searchbar() {
+import { getSongs } from "../actions/song";
+function Searchbar(props) {
+	const [text, setSearchtext] = useState("");
+
+	const fetchData = () => {
+		props.getSongs(text);
+	};
+
+	console.log(props.songs);
+	function handleSearchChange(e) {
+		setSearchtext(e.target.value);
+	}
 	return (
 		<div>
 			<form>
-				<TextField id="standard-basic" label="Standard" />
-				<Button variant="contained">Default</Button>
+				<TextField
+					id="standard-basic"
+					label="Standard"
+					onChange={handleSearchChange}
+				/>
+				<Button variant="contained" onClick={fetchData}>
+					Default
+				</Button>
 			</form>
 		</div>
 	);
 }
 
-export default Searchbar;
+const mapStateToProps = (state) => ({
+	songs: state.songs,
+});
+
+export default connect(mapStateToProps, { getSongs })(Searchbar);
