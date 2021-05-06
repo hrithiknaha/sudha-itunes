@@ -12,7 +12,6 @@ function Searchbar(props) {
 		props.getSongs(text);
 	};
 
-	console.log(props.songs);
 	function handleSearchChange(e) {
 		setSearchtext(e.target.value);
 	}

@@ -1,4 +1,4 @@
-import { GET_SONGS } from "../actions/types";
+import { GET_SONGS, GET_MORE_SONGS } from "../actions/types";
 
 const isEmpty = require("is-empty");
 
@@ -14,9 +14,15 @@ export default function (state = initialState, action) {
 			return {
 				...state,
 				loading: isEmpty(action.payload),
-				songs: action.payload,
+				songs: state.songs.concat(action.payload.results),
 				offset: state.offset + 10,
 			};
+		case GET_MORE_SONGS:
+			return {
+				...state,
+				songs: state.songs.concat(action.payload.results),
+			};
+
 		default:
 			return state;
 	}
