@@ -16,18 +16,17 @@ function Searchbar(props) {
 		setSearchtext(e.target.value);
 	}
 	return (
-		<div>
-			<form>
-				<TextField
-					id="standard-basic"
-					label="Standard"
-					onChange={handleSearchChange}
-				/>
-				<Button variant="contained" onClick={fetchData}>
-					Default
-				</Button>
-			</form>
-		</div>
+		<form className="searchbar">
+			<TextField
+				id="standard-basic"
+				label="Standard"
+				onChange={handleSearchChange}
+				className="searchbar-input"
+			/>
+			<Button variant="contained" onClick={fetchData}>
+				Search
+			</Button>
+		</form>
 	);
 }
 

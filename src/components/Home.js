@@ -15,7 +15,7 @@ function Home(props) {
 		props.getSongs();
 	};
 	return (
-		<div>
+		<div className="container">
 			<Searchbar />
 			{!props.data.loading && !isEmpty(props.data.songs) ? (
 				<InfiniteScroll
@@ -28,7 +28,7 @@ function Home(props) {
 					})}
 				</InfiniteScroll>
 			) : (
-				<div>No result</div>
+				<div className="output">No result</div>
 			)}
 		</div>
 	);
