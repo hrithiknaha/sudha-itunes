@@ -24,7 +24,7 @@ function Searchbar(props) {
 				onChange={handleSearchChange}
 				className="searchbar-input"
 			/>
-			<Button variant="contained" onClick={fetchData}>
+			<Button variant="contained" onClick={fetchData} id="button">
 				Search
 			</Button>
 		</form>
