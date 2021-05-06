@@ -1,26 +1,26 @@
 import axios from "axios";
-import { GET_SONGS } from "./types";
+import { GET_SONGS, SET_SEARCH } from "./types";
 
-export const getSongs = (slug) => (dispatch, getState) => {
-	// console.log(slug);
-	// const keyword = slug.split(" ");
-	// // console.log(keyword);
-	// const search = keyword.join("+");
-	// console.log(search);
+export const getSongs = () => (dispatch, getState) => {
+	let { search } = getState().songs;
+
+	const keyword = search.split(" ");
+	const key = keyword.join("+");
 
 	const { offset } = getState().songs;
 
-	console.log(offset);
-
-	const url = `https://itunes.apple.com/search?term=shakira&media=music&limit=10&offset=${offset}`;
-	// const url = `https://itunes.apple.com/search?term=${search}&media=music&limit=10&offset=${offset}}`;
-	// const url = `https://itunes.apple.com/search?term=${search}&entity=album`;
-	// console.log(url);
+	const url = `https://itunes.apple.com/search?term=${key}&media=music&limit=10&offset=${offset}`;
 	axios.get(url).then((res) => {
-		console.log(res.data);
 		dispatch({
 			type: GET_SONGS,
-			payload: res.data,
+			payload: { data: res.data, search },
 		});
+	});
+};
+
+export const setSearch = (text) => (dispatch) => {
+	dispatch({
+		type: SET_SEARCH,
+		payload: text,
 	});
 };
